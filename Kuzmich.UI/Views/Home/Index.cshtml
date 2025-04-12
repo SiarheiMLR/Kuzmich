@@ -1,0 +1,167 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Лабораторная работа 1</title>
+
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/lib/font-awesome/css/all.min.css" />
+    <link rel="stylesheet" href="~/Kuzmich.UI.styles.css" asp-append-version="true" />
+</head>
+<body>
+    <header>
+        <div class="container">
+            <!-- Панель навигации -->
+            <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+                <!-- меню сайта -->
+                <a class="navbar-brand" href="#">Kuzmich</a>
+                <div class="navbar-nav">
+                    <a class="nav-item nav-link active" href="#">Лб 1</a>
+                    <a class="nav-item nav-link" href="#">Каталог</a>
+                    <a class="nav-item nav-link" href="#">Администрирование</a>
+                </div>
+                <!-- меню сайта - конец -->
+                <!-- Информация пользователя -->
+                <a href="#" class="navbar-text ms-auto">
+                    00,0 руб <i class="fa-solid fa-cart-shopping"></i> (0)
+                </a>
+                <div class="dropdown ms-4 nav-color">
+                    <button class="btn btn-secondary dropdown-toggle"
+                            type="button" id="dropdownMenuButton"
+                            data-bs-toggle="dropdown"
+                            aria-expanded="false">
+                        sergei.kuzmich@gmail.com
+                        <img src="images/аватарка.jpg" width="30"
+                             alt="User" class="rounded nav-color" />
+                    </button>
+                    <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                        <li>
+                            <span class="dropdown-item-text">
+                                <img src="images/аватарка.jpg"
+                                     width="50" alt="User" class="rounded" />
+                                sergei.kuzmich@gmail.com
+                            </span>
+                        </li>
+                        <li><hr class="dropdown-divider"></li>
+                        <li>
+                            <form id="logoutForm" class="form-inline" action="#">
+                                <button id="logout" type="submit" class="nav-link btn btn-link text-dark">Выход</button>
+                            </form>
+                        </li>
+                    </ul>
+                </div>
+                <!-- Информация пользователя - конец -->
+            </nav> <!-- Панель навигации - конец -->
+        </div> <!-- container - конец -->
+    </header> <!-- header - конец -->
+
+    <main class="container mt-4">
+        <h3>Лабораторная работа 1</h3>
+
+        <h5 class="mt-4">Список</h5>
+        <ol type="A">
+            <li>элемент 1 списка</li>
+            <li>элемент 2 списка</li>
+        </ol>
+
+        <hr />
+
+        <h5 class="mt-4">Форма</h5>
+        <form method="get">
+            <!-- Чекбоксы -->
+            <div class="row mb-3">
+                <label class="col-sm-2 col-form-label"></label>
+                <div class="col-sm-10">
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="check1" id="check1">
+                        <label class="form-check-label" for="check1">
+                            Чек-бокс 1
+                        </label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="checkbox" name="check2" id="check2">
+                        <label class="form-check-label" for="check2">
+                            Чек-бокс 2
+                        </label>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Радио кнопки -->
+            <fieldset class="row mb-3">
+                <legend class="col-form-label col-sm-2 pt-0"></legend>
+                <div class="col-sm-10">
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOption" id="radio1" value="1" checked>
+                        <label class="form-check-label" for="radio1">
+                            Радио-1
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOption" id="radio2" value="2">
+                        <label class="form-check-label" for="radio2">
+                            Радио-2
+                        </label>
+                    </div>
+                    <div class="form-check form-check-inline">
+                        <input class="form-check-input" type="radio" name="radioOption" id="radio3" value="3">
+                        <label class="form-check-label" for="radio3">
+                            Радио-3
+                        </label>
+                    </div>
+                </div>
+            </fieldset>
+
+            <!-- Логин -->
+            <div class="row mb-3">
+                <label for="login" class="col-sm-2 col-form-label">Логин:</label>
+                <div class="col-sm-6">
+                    <input type="text" class="form-control" name="login" id="login" placeholder="Введите имя" required>
+                </div>
+            </div>
+
+            <!-- Пароль -->
+            <div class="row mb-3">
+                <label for="password" class="col-sm-2 col-form-label">Пароль:</label>
+                <div class="col-sm-6">
+                    <input type="password" class="form-control" name="password" id="password" placeholder="Введите пароль" required>
+                </div>
+            </div>
+
+            <!-- Кнопка отправки -->
+            <div class="row mb-3">
+                <div class="col-sm-2">
+                    <button type="submit" class="btn btn-primary">Отправить</button>
+                </div>
+            </div>
+        </form>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div class="navbar navbar-dark navbar-expand-md bg-dark">
+                <div class="navbar-nav ms-auto">
+                    <a class="nav-item nav-link" href="https://www.facebook.com">
+                        <i class="fa-brands fa-facebook-f fa-2x"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="https://vk.com/">
+                        <i class="fa-brands fa-vk fa-2x"></i>
+                    </a>
+                    <a class="nav-item nav-link" href="https://x.com/">
+                        <i class="fa-brands fa-square-x-twitter fa-2x"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+
