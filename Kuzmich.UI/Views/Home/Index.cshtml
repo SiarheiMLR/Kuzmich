@@ -1,4 +1,4 @@
-﻿
+﻿@model SelectList
 @{
     ViewBag.Title = "Index Page";
 }
@@ -24,7 +24,7 @@
 <hr />
 
 <h5 class="mt-4">Форма</h5>
-<form role="form" method="post">
+<form role="form" method="post" asp-action="index">
             <!-- Список -->
             <div class="row mb-3">
                 <label class="col-sm-2 col-form-label"></label>
