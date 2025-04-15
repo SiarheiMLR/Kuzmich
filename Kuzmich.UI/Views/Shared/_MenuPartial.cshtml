@@ -14,10 +14,10 @@
    asp-controller="Home"
    asp-action="Index">Kuzmich</a>
 <div class="navbar-nav">
-    <a class="nav-item nav-link active @(controller == "Home"?"active":"")"
+    <a class="nav-item nav-link @(controller == "home"?"active":"")"
        asp-controller="Home"
        asp-action="Index">Лб 2</a>
-    <a class="nav-item nav-link @(controller == "Product"?"active":"")"
+    <a class="nav-item nav-link @(controller == "product"?"active":"")"
        asp-controller="Product"
        asp-action="Index">Каталог</a>
     <a class="nav-item nav-link @(area == "Admin"?"active":"")"
