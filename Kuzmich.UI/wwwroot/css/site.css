@@ -5,3 +5,19 @@ header, footer {
 .nav-color {
     color: rgba(255, 255, 255, 0.5)
 }
+
+/* Стиль для изображения ноутбука */
+.image-container {
+    height: 200px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    background-color: #f8f9fa;
+}
+
+.image-container img {
+    max-height: 100%;
+    width: auto;
+    object-fit: contain;
+}
