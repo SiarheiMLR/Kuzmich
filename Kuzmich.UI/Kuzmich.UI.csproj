@@ -5,8 +5,10 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UserSecretsId>aspnet-Kuzmich.UI-184dc24a-95af-4a38-85b5-7ca8cb64420a</UserSecretsId>
+	<AssemblyName>Kuzmich.UI</AssemblyName>
+    <RootNamespace>Kuzmich.UI</RootNamespace>
   </PropertyGroup>
-
+  
   <ItemGroup>
     <Content Remove="wwwroot\images\default-profile-picture.png" />
   </ItemGroup>
@@ -26,7 +28,8 @@
   <ItemGroup>
     <ProjectReference Include="..\Kuzmich.Domain\Kuzmich.Domain.csproj" />
   </ItemGroup>
-
+  
+    
   <ItemGroup>
     <Resource Include="wwwroot\images\default-profile-picture.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>

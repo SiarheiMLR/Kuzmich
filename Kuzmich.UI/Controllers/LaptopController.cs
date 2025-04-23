@@ -17,9 +17,11 @@ namespace Kuzmich.UI.Controllers
             _categoryService = categoryService;
         }
 
-        public async Task<IActionResult> Index(string? category)
+        [Route("Catalog")]
+        [Route("Catalog/{category?}/page/{pageNo?}")]
+        public async Task<IActionResult> Index(string? category, int pageNo = 1)
         {
-            var laptopResult = await _laptopService.GetProductListAsync(category);
+            var laptopResult = await _laptopService.GetProductListAsync(category, pageNo);
             var categoryResult = await _categoryService.GetCategoryListAsync();
 
             if (!laptopResult.Success || !categoryResult.Success)

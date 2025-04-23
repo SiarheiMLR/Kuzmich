@@ -6,11 +6,18 @@ using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.UI.Services;
 using Microsoft.EntityFrameworkCore;
 using System.Security.Claims;
+using System.Reflection;
 
 namespace Kuzmich.UI
 {
     public class Program
     {
+        public void Configure(IApplicationBuilder app)
+        {
+            var assembly = Assembly.Load("Kuzmich.UI");
+            var type = assembly.GetType("Kuzmich.UI.TagHelpers.PagerTagHelper");
+            Console.WriteLine($"PagerTagHelper exists: {type != null}");
+        }
         public static async Task Main(string[] args)
         {
             var builder = WebApplication.CreateBuilder(args);
@@ -59,6 +66,8 @@ namespace Kuzmich.UI
             builder.Services.AddScoped<ILaptopService, MemoryLaptopService>();
             builder.Services.AddScoped<ICategoryService, MemoryCategoryService>();
 
+            builder.Services.AddHttpContextAccessor();
+
             var app = builder.Build();
 
             // Конфигурация пайплайна
@@ -84,6 +93,13 @@ namespace Kuzmich.UI
 
             app.MapStaticAssets();
 
+            // Нстройка маршрута, позволяющего отображать список объектов по адресу
+            //app.MapControllerRoute(
+            //    name: "catalogRoute",
+            //    pattern: "catalog/{category?}/page/{pageNo?}",
+            //    defaults: new { controller = "Laptop", action = "Index" });
+            
+            // Маршрут по умолчанию
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}")

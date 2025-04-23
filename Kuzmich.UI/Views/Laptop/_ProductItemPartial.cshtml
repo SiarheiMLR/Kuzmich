@@ -1,0 +1,32 @@
+﻿@model Kuzmich.Domain.Entities.Laptop
+
+<div class="col-md-4 mb-4">
+    <div class="card h-100">
+        <div class="image-container">
+            <product-image image="@Model.Image" alt="@Model.Name" width="200" css-class="card-img-top" />
+        </div>
+        <div class="card-body">
+            <h5 class="card-title">@Model.Name</h5>
+            <p class="card-text">@Model.Description</p>
+        </div>
+        <div class="card-footer d-flex justify-content-between align-items-center">
+            <strong>@Model.Price руб.</strong>
+            <div>
+                <a class="btn btn-sm btn-outline-secondary me-2"
+                   asp-action="Details"
+                   asp-controller="Laptop"
+                   asp-route-id="@Model.Id">
+                    Подробнее
+                </a>
+                <a class="btn btn-sm btn-outline-success"
+                   asp-controller="Cart"
+                   asp-action="Add"
+                   asp-route-id="@Model.Id"
+                   asp-route-returnurl="@ViewContext.HttpContext.Request.Path + ViewContext.HttpContext.Request.QueryString.ToUriComponent()">
+                    В корзину
+                </a>
+            </div>
+        </div>
+    </div>
+</div>
+

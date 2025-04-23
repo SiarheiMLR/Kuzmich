@@ -1,6 +1,7 @@
 ﻿using Kuzmich.Domain.Entities;
 using Kuzmich.Domain.Models;
 using Kuzmich.UI.Services.CategoryService;
+using Microsoft.Extensions.Configuration;
 
 namespace Kuzmich.UI.Services.LaptopService
 {
@@ -8,10 +9,12 @@ namespace Kuzmich.UI.Services.LaptopService
     {
         private readonly List<Laptop> _laptops;
         private readonly List<Category> _categories;
+        private readonly IConfiguration _config;
         private int _nextId = 9;
 
-        public MemoryLaptopService(ICategoryService categoryService)
+        public MemoryLaptopService(ICategoryService categoryService, IConfiguration config)
         {
+            _config = config;
             _categories = categoryService.GetCategoryListAsync().Result.Data;
 
             _laptops = new List<Laptop>
@@ -29,6 +32,7 @@ namespace Kuzmich.UI.Services.LaptopService
 
         public Task<ResponseData<ListModel<Laptop>>> GetProductListAsync(string? category, int pageNo = 1)
         {
+            int pageSize = _config.GetValue<int>("ItemsPerPage", 3);
             int? categoryId = null;
 
             if (!string.IsNullOrWhiteSpace(category))
@@ -41,9 +45,24 @@ namespace Kuzmich.UI.Services.LaptopService
                 ? _laptops.Where(l => l.CategoryId == categoryId.Value).ToList()
                 : _laptops.ToList();
 
-            var model = new ListModel<Laptop> { Items = filtered };
+            int totalPages = Math.Max(1, (int)Math.Ceiling(filtered.Count / (double)pageSize));
+            var pagedItems = filtered
+                .Skip((pageNo - 1) * pageSize)
+                .Take(pageSize)
+                .ToList();
 
-            return Task.FromResult(new ResponseData<ListModel<Laptop>> { Data = model, Success = true });
+            var model = new ListModel<Laptop>
+            {
+                Items = pagedItems,
+                CurrentPage = pageNo,
+                TotalPages = totalPages
+            };
+
+            return Task.FromResult(new ResponseData<ListModel<Laptop>>
+            {
+                Data = model,
+                Success = true
+            });
         }
 
         public Task<ResponseData<Laptop>> GetProductByIdAsync(int id)
@@ -68,7 +87,7 @@ namespace Kuzmich.UI.Services.LaptopService
 
                 if (formFile != null)
                 {
-                    existing.Image = formFile.FileName;                    
+                    existing.Image = formFile.FileName;
                 }
             }
             return Task.CompletedTask;
@@ -89,7 +108,7 @@ namespace Kuzmich.UI.Services.LaptopService
             product.Id = _nextId++;
             if (formFile != null)
             {
-                product.Image = formFile.FileName;                
+                product.Image = formFile.FileName;
             }
             _laptops.Add(product);
 
