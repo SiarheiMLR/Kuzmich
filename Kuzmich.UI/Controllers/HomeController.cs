@@ -19,7 +19,7 @@ namespace Kuzmich.UI.Controllers
         }
         public IActionResult Index()
         {
-            ViewData["Text"] = "Лабораторная работа №5";
+            ViewData["Text"] = "Лабораторная работа №6";
             SelectList data = new SelectList(_listData, "Id", "Name");
             return View(data);
         }

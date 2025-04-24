@@ -63,8 +63,18 @@ namespace Kuzmich.UI
             builder.Services.AddControllersWithViews();
 
             // Регистрация сервисов
-            builder.Services.AddScoped<ILaptopService, MemoryLaptopService>();
-            builder.Services.AddScoped<ICategoryService, MemoryCategoryService>();
+            //builder.Services.AddScoped<ILaptopService, MemoryLaptopService>();
+            //builder.Services.AddScoped<ICategoryService, MemoryCategoryService>();
+
+            builder.Services.AddHttpClient<ILaptopService, ApiLaptopService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7003/api/laptops/");
+            });
+
+            builder.Services.AddHttpClient<ICategoryService, ApiCategoryService>(client =>
+            {
+                client.BaseAddress = new Uri("https://localhost:7003/api/categories/");
+            });
 
             builder.Services.AddHttpContextAccessor();
 

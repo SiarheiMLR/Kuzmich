@@ -9,7 +9,7 @@ namespace Kuzmich.Domain.Models
     public class ResponseData<T> // Класс, описывающий формат данных, получаемых от сервисов
     {
         // запрашиваемые данные
-        public T Data { get; set; }
+        public T? Data { get; set; } = default!;
         // признак успешного завершения запроса
         public bool Success { get; set; } = true;
         // сообщение в случае неуспешного завершения
